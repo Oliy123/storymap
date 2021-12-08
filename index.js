@@ -1,5 +1,8 @@
 // I got this tileLayer is from © MapTiler © https://cloud.maptiler.com/maps/
-var map = L.map('map').setView([12.256594, 34.171884], 4);
+var map = L.map('map',{
+  MaxBounds:[[31.414624, 4.700147],[-34.279556, 95.543893]],
+  minZoom:4
+}).setView([12.256594, 34.171884], 4);
 var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
        }).addTo(map);
@@ -10,7 +13,9 @@ var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
       minZoom: 1,
       maxZoom: 18,
       ext: 'jpg'
+
      });
+
 
      //darkmap
      var Dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
@@ -85,7 +90,10 @@ layer.bindPopup(feature.properties.name)
 //////////////////////////////
 
 
-var wormapmap = L.map('wormapmap').setView([12.256594, 34.171884], 4);
+var wormapmap = L.map('wormapmap',{
+  MaxBounds:[[37.605870, -34.885786],[-34.279556, 95.543893]],
+  minZoom:2,
+}).setView([12.256594, 34.171884], 3);
 var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
        });
@@ -93,10 +101,10 @@ var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
        var Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
       attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       subdomains: 'abcd',
-      minZoom: 1,
-      maxZoom: 18,
+      maxZoom: 14,
       ext: 'jpg'
      });
+
      //Watercolor
      //darkmap
      var Dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
@@ -155,12 +163,12 @@ var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
 
 
 
-L.geoJSON(lineJson).addTo(wormapmap);
-L.geoJSON(WormapmapJson, {
-onEachFeature:function(feature, layer){
-layer.bindPopup(feature.properties.name)
-}
-}).addTo(wormapmap);
+      L.geoJSON(lineJson).addTo(wormapmap);
+      L.geoJSON(WormapmapJson, {
+      onEachFeature:function(feature, layer){
+      layer.bindPopup(feature.properties.name)
+      }
+      }).addTo(wormapmap);
 
 
 
@@ -250,7 +258,7 @@ function flyToIndex(index){
 }
 
 
-
+//////////////////////////////////////
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -314,7 +322,7 @@ function drawStuff() {
   var chartDiv = document.getElementById('chartw_div');
 
   var data = google.visualization.arrayToDataTable([
-    ['Galaxy', 'Total Dam reservoir storage capacity in km<sup>3</sup>', 'Power Generation Capacity in GW '],
+    ['Galaxy', 'Total Dam reservoir storage capacity in kilometer cube', 'Power Generation Capacity in GW '],
     ['GERD', 74, 6.5],
     ['Aswan high dam', 132, 2.1],
     ['Sennar dam', 5.3, .59],
@@ -326,7 +334,7 @@ function drawStuff() {
     width: 900,
     chart: {
       title: '',
-      subtitle: 'Total Dam reservoir storage capacity in km<sup>3</sup> and Power Generation Capacity in GW'
+      subtitle: 'Total Dam reservoir storage capacity in kilometer cube and Power Generation Capacity in GW'
     },
     series: {
       0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
@@ -334,7 +342,7 @@ function drawStuff() {
     },
     axes: {
       y: {
-        distance: {label: 'km<sup>3</sup>'}, // Left y-axis.
+        distance: {label: 'kilometer cube'}, // Left y-axis.
         brightness: {side: 'right', label: 'Gigawatt'} // Right y-axis.
       }
     }
