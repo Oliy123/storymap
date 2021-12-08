@@ -322,7 +322,7 @@ function drawStuff() {
   var chartDiv = document.getElementById('chartw_div');
 
   var data = google.visualization.arrayToDataTable([
-    ['Galaxy', 'Total Dam reservoir storage capacity in kilometer cube', 'Power Generation Capacity in GW '],
+    ['Five dam along Nile dame ', 'reservoir capacity in kilometer cube', 'Power Generation Capacity in GW '],
     ['GERD', 74, 6.5],
     ['Aswan high dam', 132, 2.1],
     ['Sennar dam', 5.3, .59],
@@ -331,10 +331,10 @@ function drawStuff() {
   ]);
 
   var materialOptions = {
-    width: 900,
+    width: 720,
     chart: {
       title: '',
-      subtitle: 'Total Dam reservoir storage capacity in kilometer cube and Power Generation Capacity in GW'
+      subtitle: 'storage capacity in kilometer cube and Power Generation Capacity in GW'
     },
     series: {
       0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
@@ -349,12 +349,12 @@ function drawStuff() {
   };
 
   var classicOptions = {
-    width: 900,
+    width: 750,
     series: {
       0: {targetAxisIndex: 0},
       1: {targetAxisIndex: 1}
     },
-    title: 'Nearby galaxies - distance on the left, brightness on the right',
+    title: 'storage capacity on the left, power generation on the right',
     vAxes: {
       // Adds titles to each axis.
       0: {title: 'parsecs'},
