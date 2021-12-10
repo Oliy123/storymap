@@ -77,10 +77,22 @@ position: 'bottomright',
 map.addControl(Legend);
 $(".legend-container").append( $("#legend") );
 
+var riverStyle = {
+    "color": "red",
+    "weight": 3,
+    "fillOpacity": 1
+};
+
+var countryStyle = {
+    "color": "red",
+    "weight": 0,
+    "fillOpacity": .5,
+};
 
 
-L.geoJSON(lineJson).addTo(map);
-L.geoJSON(PolygonJson, {
+
+L.geoJSON(lineJson,{style:riverStyle}).addTo(map);
+L.geoJSON(PolygonJson,{style:countryStyle}, {
 onEachFeature:function(feature, layer){
 layer.bindPopup(feature.properties.name)
 }
@@ -166,7 +178,7 @@ var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
       L.geoJSON(lineJson).addTo(wormapmap);
       L.geoJSON(WormapmapJson, {
       onEachFeature:function(feature, layer){
-      layer.bindPopup(feature.properties.name)
+      layer.bindPopup(feature.properties.RIVER_MAP)
       }
       }).addTo(wormapmap);
 
